@@ -2,6 +2,7 @@ package mdrims;
 
 public class ClassVO {
     private String code;
+    private String name;
     private String time;
     private int class_to;
     private int professor_id;
@@ -10,15 +11,17 @@ public class ClassVO {
     public String getCode(){
         return this.code;
     }
-    public void setCode(String code) {
-        this.code = code;
+    public void setCode(String code) { this.code = code; }
+    public String getName(){
+        return this.name;
+    }
+    public void setName(String name) {
+        this.name = name;
     }
     public String getTime(){
         return this.time;
     }
-    public void setTime(String time) {
-        this.code = time;
-    }
+    public void setTime(String time) { this.time = time; }
     public int getClass_to() {
         return class_to;
     }
@@ -41,6 +44,7 @@ public class ClassVO {
     @Override
     public String toString() {
         return "StudentsVO {code='" + code + '\'' +
+                ", name='" + name + '\'' +
                 ", time='" + time + '\'' +
                 ", class_to=" + class_to +
                 ", professor_id=" + professor_id +

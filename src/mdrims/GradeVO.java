@@ -1,20 +1,11 @@
 package mdrims;
 
 public class GradeVO {
-    private int num;
     private String code;
     private int professor_id;
     private int student_id;
     private double grade;
     private String extra;
-
-    public int getNum() {
-        return this.num;
-    }
-
-    public void setNum(int num) {
-        this.num = num;
-    }
 
     public String getCode() {
         return this.code;
@@ -58,8 +49,7 @@ public class GradeVO {
 
     @Override
     public String toString() {
-        return "StudentsVO {num=" + num +
-                ", code='" + code + '\'' +
+        return "StudentsVO {code='" + code + '\'' +
                 ", professor_id=" + professor_id +
                 ", student_id=" + student_id +
                 ", state=" + grade +
