@@ -3,7 +3,6 @@ import java.sql.*;
 import java.util.ArrayList;
 
 public class SelectQuery {
-    public static ArrayList<ClassVO> list = new ArrayList<ClassVO>();
     public void select_class(Connection dbConn, ClassVO classVO) throws SQLException {
         String sql = "SELECT id, name, time, class_to, professor_id, extra FROM class";
         Statement stmt = dbConn.createStatement();
@@ -18,25 +17,9 @@ public class SelectQuery {
             classVO.setExtra(rs.getString("extra"));
             DBManager.return_class(classVO);
             System.out.println(classVO);
-            list.add(classVO);
         }
     }
 
-    public void select_professor(Connection dbConn, ClassVO classVO, ProfessorsVO professorsVO) throws SQLException {
-        String sql = "SELECT id, name FROM professors";
-        Statement stmt = dbConn.createStatement();
-        ResultSet rs = stmt.executeQuery(sql);
-
-        while(rs.next()) {
-            int id = rs.getInt("id");
-            String name = rs.getString("name");
-            for (int i = 0; i < list.size(); i++) {
-                if (id == list.get(i).getProfessor_id()) {
-                    System.out.println("교수명: " + name);
-                }
-            }
-        }
-    }
     public void select_grade(Connection dbConn, int input_id, GradeVO gradeVO) throws SQLException {
         String sql = "SELECT code, grade FROM grade WHERE student_id="+input_id;
         Statement stmt = dbConn.createStatement();

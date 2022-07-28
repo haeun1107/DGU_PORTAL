@@ -122,7 +122,6 @@ public class Main {
                 case 7:
                     System.out.println("~~~~~~~~~~~~~~~~~~~~강좌 목록~~~~~~~~~~~~~~~~~~~~");
                     dbmanager.select_class(classVO);
-                    //dbmanager.select_professor(classVO, professorsVO);
 
 //                    System.out.println("수강 신청할 강좌 번호: ");
 //                    sugangVO.setCode(sc.nextInt());

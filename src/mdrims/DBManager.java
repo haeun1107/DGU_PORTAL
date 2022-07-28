@@ -39,10 +39,6 @@ public class DBManager {
         dbConn = DBConnector.getConnection();
         update_query.update_grade(dbConn, gradeVO);
     }
-    public void select_professor(ClassVO classVO, ProfessorsVO professorsVO) throws SQLException {
-        dbConn = DBConnector.getConnection();
-        select_query.select_professor(dbConn, classVO, professorsVO);
-    }
     public void select_class(ClassVO classVO) throws SQLException {
         dbConn = DBConnector.getConnection();
         select_query.select_class(dbConn, classVO);
