@@ -1,17 +1,19 @@
 package mdrims;
 
 public class ClassVO {
-    private String code;
+    private int id;
     private String name;
     private String time;
     private int class_to;
     private int professor_id;
+    private String state;
     private String extra;
-
-    public String getCode(){
-        return this.code;
+    public int getId() {
+        return id;
     }
-    public void setCode(String code) { this.code = code; }
+    public void setId(int id) {
+        this.id = id;
+    }
     public String getName(){
         return this.name;
     }
@@ -34,6 +36,8 @@ public class ClassVO {
     public void setProfessor_id(int professor_id) {
         this.professor_id = professor_id;
     }
+    public String getState() { return state; }
+    public void setState(String state) { this.state = state; }
     public String getExtra() {
         return extra;
     }
@@ -43,11 +47,13 @@ public class ClassVO {
 
     @Override
     public String toString() {
-        return "StudentsVO {code='" + code + '\'' +
+        return "ClassVO{" +
+                "id=" + id +
                 ", name='" + name + '\'' +
                 ", time='" + time + '\'' +
                 ", class_to=" + class_to +
                 ", professor_id=" + professor_id +
+                ", state='" + state + '\'' +
                 ", extra='" + extra + '\'' +
                 '}';
     }

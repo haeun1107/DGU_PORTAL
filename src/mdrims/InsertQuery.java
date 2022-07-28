@@ -39,15 +39,16 @@ public class InsertQuery {
         }
     }
     public void insert_class(Connection dbConn, ClassVO classVO){
-        String sql= "insert into class(code, name, time, class_to, professor_id, extra) values(?,?,?,?,?,?)";
+        String sql= "insert into class(id, name, time, class_to, professor_id, state, extra) values(?,?,?,?,?,?,?)";
         try {
             PreparedStatement ps = dbConn.prepareStatement(sql);
-            ps.setString(1, classVO.getCode());
+            ps.setInt(1, classVO.getId());
             ps.setString(2, classVO.getName());
             ps.setString(3, classVO.getTime());
             ps.setInt(4, classVO.getClass_to());
             ps.setInt(5, classVO.getProfessor_id());
-            ps.setString(6, classVO.getExtra());
+            ps.setString(6, classVO.getState());
+            ps.setString(7, classVO.getExtra());
             ps.execute();
             ps.close();
         }
@@ -56,14 +57,15 @@ public class InsertQuery {
         }
     }
     public void insert_grade(Connection dbConn, GradeVO gradeVO){
-        String sql= "insert into grade(code, professor_id, student_id, grade, extra) values(?,?,?,?,?)";
+        String sql= "insert into grade(id, code, professor_id, student_id, grade, extra) values(?,?,?,?,?,?)";
         try {
             PreparedStatement ps = dbConn.prepareStatement(sql);
-            ps.setString(1, gradeVO.getCode());
-            ps.setInt(2, gradeVO.getProfessor_id());
-            ps.setInt(3, gradeVO.getStudent_id());
-            ps.setDouble(4, gradeVO.getGrade());
-            ps.setString(5, gradeVO.getExtra());
+            ps.setInt(1, gradeVO.getId());
+            ps.setInt(2, gradeVO.getCode());
+            ps.setInt(3, gradeVO.getProfessor_id());
+            ps.setInt(4, gradeVO.getStudent_id());
+            ps.setDouble(5, gradeVO.getGrade());
+            ps.setString(6, gradeVO.getExtra());
             ps.execute();
             ps.close();
         }

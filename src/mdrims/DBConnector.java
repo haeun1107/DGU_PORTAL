@@ -9,7 +9,6 @@ public class DBConnector {
     // 변수 선언
     public static Connection dbConn;
     //-- 자동으로 초기화 지원 -> null
-
     // 메소드 정의
     public static Connection getConnection() // throws ClassNotFoundException, SQLException
     {
@@ -43,7 +42,6 @@ public class DBConnector {
                 //ps.setString(", name);
                 //ps.setString("male", gender);
                 //ps.setString("");
-
             } catch(Exception e) // (ClassNotFoundException, SQLException)
             {
                 System.out.println(e.toString());

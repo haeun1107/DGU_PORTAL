@@ -1,17 +1,25 @@
 package mdrims;
 
 public class GradeVO {
-    private String code;
+    private int id;
+    private int code;
     private int professor_id;
     private int student_id;
-    private double grade;
+    private float grade;
     private String extra;
 
-    public String getCode() {
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+    public int getCode() {
         return this.code;
     }
 
-    public void setCode(String code) {
+    public void setCode(int code) {
         this.code = code;
     }
 
@@ -31,11 +39,11 @@ public class GradeVO {
         this.student_id = student_id;
     }
 
-    public double getGrade() {
+    public float getGrade() {
         return grade;
     }
 
-    public void setGrade(double grade) {
+    public void setGrade(float grade) {
         this.grade = grade;
     }
 
@@ -49,10 +57,12 @@ public class GradeVO {
 
     @Override
     public String toString() {
-        return "StudentsVO {code='" + code + '\'' +
+        return "GradeVO{" +
+                "id=" + id +
+                ", code='" + code + '\'' +
                 ", professor_id=" + professor_id +
                 ", student_id=" + student_id +
-                ", state=" + grade +
+                ", grade=" + grade +
                 ", extra='" + extra + '\'' +
                 '}';
     }

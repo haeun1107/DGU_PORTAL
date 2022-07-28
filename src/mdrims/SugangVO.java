@@ -1,23 +1,23 @@
 package mdrims;
 
 public class SugangVO {
-    private int num;
-    private String code;
+    private int id;
+    private int code;
     private int professor_id;
     private int student_id;
     private String state;
     private String extra;
 
-    public int getNum() {
-        return this.num;
+    public int getId() {
+        return this.id;
     }
-    public void setNum(int num){
-        this.num = num;
+    public void setId(int id){
+        this.id = id;
     }
-    public String getCode(){
+    public int getCode(){
         return this.code;
     }
-    public void setCode(String code) {
+    public void setCode(int code) {
         this.code = code;
     }
     public int getProfessor_id() {
@@ -47,7 +47,8 @@ public class SugangVO {
 
     @Override
     public String toString() {
-        return "StudentsVO {num=" + num +
+        return "SugangVO{" +
+                "id=" + id +
                 ", code='" + code + '\'' +
                 ", professor_id=" + professor_id +
                 ", student_id=" + student_id +

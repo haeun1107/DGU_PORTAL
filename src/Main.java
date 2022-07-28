@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws SQLException {
         DBManager dbmanager = new DBManager();
         Scanner sc = new Scanner(System.in);
 
@@ -21,14 +21,13 @@ public class Main {
             System.out.println("0. 프로그램 종료");
             System.out.println("1. 학생 추가");
             System.out.println("2. 교수 추가");
-            System.out.println("3. 수업 추가");
-            System.out.println("4. 성적 기입");
-            System.out.println("5. 휴학/휴직 처리");
-            System.out.println("6. 복학/복직 처리");
-            System.out.println("7. 강좌 개설/폐설");
-            System.out.println("8. 학생별 성적 조회");
-            System.out.println("9. 수강신청");
-            System.out.println("10. 수강정정");
+            System.out.println("3. 성적 기입");
+            System.out.println("4. 휴학/복학 신청");
+            System.out.println("5. 휴직/복직 신청");
+            System.out.println("6. 강좌 개설/폐설");
+            System.out.println("7. 수강신청");
+            System.out.println("8. 수강정정");
+            System.out.println("9. 학생별 성적 조회");
             System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~");
             System.out.print("원하는 기능의 숫자를 선택하세요 : ");
             input_num = sc.nextInt();
@@ -67,15 +66,44 @@ public class Main {
                     System.out.print("상태: ");
                     professorsVO.setState(sc.next());
                     System.out.print("비고: ");
-                    professorsVO.setExtra(sc.next());
+                    professorsVO.setExtra(sc.nextLine());
 
                     dbmanager.insert_professor(professorsVO);
                     System.out.println("SUCCESS!!!");
                     break;
                 case 3:
+                    System.out.print("학번: ");
+                    gradeVO.setStudent_id(sc.nextInt());
                     System.out.print("강좌 번호: ");
-                    classVO.setCode(sc.next());
-                    System.out.print("교과목명: ");
+                    gradeVO.setCode(sc.nextInt());
+                    System.out.print("성적: ");
+                    gradeVO.setGrade(sc.nextFloat());
+
+                    dbmanager.update_grade(gradeVO);
+                    System.out.println("SUCCESS!!!");
+                    break;
+                case 4:
+                    System.out.print("학번: ");
+                    studentsVO.setId(sc.nextInt());
+                    System.out.print("변경할 학적 상태: ");
+                    studentsVO.setState(sc.next());
+
+                    dbmanager.update_student_state(studentsVO);
+                    System.out.println("SUCCESS!!!");
+                    break;
+                case 5:
+                    System.out.print("교번: ");
+                    professorsVO.setId(sc.nextInt());
+                    System.out.print("변경할 학적 상태: ");
+                    professorsVO.setState(sc.next());
+
+                    dbmanager.update_professor_state(professorsVO);
+                    System.out.println("SUCCESS!!!");
+                    break;
+                case 6:
+                    System.out.print("강좌 번호: ");
+                    classVO.setId(sc.nextInt());
+                    System.out.print("강좌명: ");
                     classVO.setName(sc.next());
                     System.out.print("강의 시간: ");
                     classVO.setTime(sc.next());
@@ -83,26 +111,33 @@ public class Main {
                     classVO.setClass_to(sc.nextInt());
                     System.out.print("담당 교수 교번: ");
                     classVO.setProfessor_id(sc.nextInt());
+                    System.out.print("강좌 개설/폐설: ");
+                    classVO.setState(sc.next());
                     System.out.print("비고: ");
-                    classVO.setExtra(sc.next());
+                    classVO.setExtra(sc.nextLine());
 
                     dbmanager.insert_class(classVO);
                     System.out.println("SUCCESS!!!");
                     break;
-                case 4:
-                    System.out.print("강좌 번호: ");
-                    gradeVO.setCode(sc.next());
-                    System.out.print("담당 교수 교번: ");
-                    gradeVO.setProfessor_id(sc.nextInt());
-                    System.out.print("학번: ");
-                    gradeVO.setStudent_id(sc.nextInt());
-                    System.out.print("성적: ");
-                    gradeVO.setGrade(sc.nextDouble());
-                    System.out.print("비고: ");
-                    gradeVO.setExtra(sc.next());
+                case 7:
+                    System.out.println("~~~~~~~~~~~~~~~~~~~~강좌 목록~~~~~~~~~~~~~~~~~~~~");
+                    dbmanager.select_class(classVO);
+                    //dbmanager.select_professor(classVO, professorsVO);
 
-                    dbmanager.insert_grade(gradeVO);
-                    System.out.println("SUCCESS!!!");
+//                    System.out.println("수강 신청할 강좌 번호: ");
+//                    sugangVO.setCode(sc.nextInt());
+
+//                    System.out.println("학번: ");
+//                    sugangVO.setStudent_id(sc.nextInt());
+//                    System.out.println("강좌 번호: ");
+//                    sugangVO.setCode(sc.next());
+//
+//                    dbmanager.apply_class(sugangVO);
+                case 8:
+                    break;
+                case 9:
+                    System.out.print("학번: ");
+                    dbmanager.select_grade(sc.nextInt(), gradeVO);
                     break;
                 default:
                     break;
