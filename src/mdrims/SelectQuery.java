@@ -3,34 +3,41 @@ import java.sql.*;
 import java.util.ArrayList;
 
 public class SelectQuery {
-    public void select_class(Connection dbConn, ClassVO classVO) throws SQLException {
+    public ResultSet select_class(Connection dbConn) throws SQLException {
         String sql = "SELECT id, name, time, class_to, professor_id, extra FROM class";
         Statement stmt = dbConn.createStatement();
         ResultSet rs = stmt.executeQuery(sql);
 
-        while(rs.next()) {
-            classVO.setId(rs.getInt("id"));
-            classVO.setName(rs.getString("name"));
-            classVO.setTime(rs.getString("time"));
-            classVO.setClass_to(rs.getInt("class_to"));
-            classVO.setProfessor_id(rs.getInt("professor_id"));
-            classVO.setExtra(rs.getString("extra"));
-            DBManager.return_class(classVO);
-            System.out.println(classVO);
-        }
+        return rs;
     }
-
-    public void select_grade(Connection dbConn, int input_id, GradeVO gradeVO) throws SQLException {
-        String sql = "SELECT code, grade FROM grade WHERE student_id="+input_id;
+    public ResultSet select_professor(Connection dbConn, int professor_id) throws SQLException {
+        String sql = "SELECT name FROM professors where id ="+professor_id;
         Statement stmt = dbConn.createStatement();
         ResultSet rs = stmt.executeQuery(sql);
 
-        while(rs.next()) {
-            String code = rs.getString("code");
-            String grade = rs.getString("grade");
-            System.out.print("강좌 코드: " + code);
-            System.out.println(", 성적: " + grade);
-        }
+        return rs;
+    }
+
+    public ResultSet select_grade(Connection dbConn, int input_id) throws SQLException {
+        String sql = "SELECT code, professor_id, student_id, grade FROM grade WHERE student_id="+input_id;
+        Statement stmt = dbConn.createStatement();
+        ResultSet rs = stmt.executeQuery(sql);
+
+        return rs;
+    }
+    public ResultSet select_student(Connection dbConn, int student_id) throws SQLException {
+        String sql = "SELECT name FROM students where id ="+student_id;
+        Statement stmt = dbConn.createStatement();
+        ResultSet rs = stmt.executeQuery(sql);
+
+        return rs;
+    }
+    public ResultSet select_name(Connection dbConn, int code) throws SQLException {
+        String sql = "SELECT name FROM class WHERE id="+code;
+        Statement stmt = dbConn.createStatement();
+        ResultSet rs = stmt.executeQuery(sql);
+
+        return rs;
     }
     //    public void select_student(Connection dbConn, StudentsVO studentsVO){
 //        String sql= "SELECT ";

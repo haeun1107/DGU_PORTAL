@@ -39,26 +39,24 @@ public class DBManager {
         dbConn = DBConnector.getConnection();
         update_query.update_grade(dbConn, gradeVO);
     }
-    public void select_class(ClassVO classVO) throws SQLException {
+    public ResultSet select_class() throws SQLException {
         dbConn = DBConnector.getConnection();
-        select_query.select_class(dbConn, classVO);
+        return select_query.select_class(dbConn);
     }
-    public static void return_class(ClassVO classVO) throws SQLException {
-        DBManager.dbConn = DBConnector.getConnection();
-        System.out.print("강좌 번호: " + classVO.getId());
-        System.out.print(", 강좌명: "+ classVO.getName());
-        System.out.print(", 시간: : " + classVO.getTime());
-        System.out.print(", 수강 인원: " );
-        System.out.print(", 수강 정원: " + classVO.getClass_to());
-        System.out.print(", 교번: " + classVO.getProfessor_id());
-        System.out.print(", 비고: " + classVO.getExtra());
-        System.out.println();
-    }
-    public void apply_class(SugangVO sugangVO) {
-
-    }
-    public void select_grade(int input_id, GradeVO gradeVO) throws SQLException {
+    public ResultSet select_professor(int professor_id) throws SQLException {
         dbConn = DBConnector.getConnection();
-        select_query.select_grade(dbConn, input_id, gradeVO);
+        return select_query.select_professor(dbConn, professor_id);
+    }
+    public ResultSet select_grade(int input_id) throws SQLException {
+        dbConn = DBConnector.getConnection();
+        return select_query.select_grade(dbConn, input_id);
+    }
+    public ResultSet select_student(int student_id) throws SQLException {
+        dbConn = DBConnector.getConnection();
+        return select_query.select_student(dbConn, student_id);
+    }
+    public ResultSet select_name(int code) throws SQLException {
+        dbConn = DBConnector.getConnection();
+        return select_query.select_name(dbConn, code);
     }
 }
