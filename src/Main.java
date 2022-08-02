@@ -20,6 +20,8 @@ public class Main {
         ResultSet rs2;
         ResultSet rs3;
         ResultSet rs4;
+        ResultSet rs5;
+        ResultSet rs6;
 
         int input_num = 0;
 
@@ -138,32 +140,59 @@ public class Main {
                         classVO.setProfessor_id(rs1.getInt("professor_id"));
                         classVO.setExtra(rs1.getString("extra"));
 
-                        professorsVO.setId(classVO.getProfessor_id());
-                        rs2 = dbmanager.select_professor(professorsVO.getId());
+                        rs2 = dbmanager.check_to(classVO.getId());
+                        int i = 0;
                         while(rs2.next()) {
-                            professorsVO.setName(rs2.getString("name"));
+                            ++i;
+                        }
+
+                        professorsVO.setId(classVO.getProfessor_id());
+                        rs3 = dbmanager.select_professor(professorsVO.getId());
+                        while(rs3.next()) {
+                            professorsVO.setName(rs3.getString("name"));
                         }
 
                         System.out.print("강좌 번호: " + classVO.getId());
-                        System.out.print(", 강좌명: "+ classVO.getName());
+                        System.out.print(", 강좌명: " + classVO.getName());
                         System.out.print(", 시간: " + classVO.getTime());
-                        System.out.print(", 수강 인원: " );
+                        System.out.print(", 수강 인원: " + i);
                         System.out.print(", 수강 정원: " + classVO.getClass_to());
                         System.out.print(", 교수명: " + professorsVO.getName());
                         System.out.println(", 비고: " + classVO.getExtra());
                     }
+                    System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
 
+                    System.out.print("수강 신청할 강좌 번호: ");
+                    sugangVO.setCode(sc.nextInt());
 
-//                    System.out.println("수강 신청할 강좌 번호: ");
-//                    sugangVO.setCode(sc.nextInt());
+                    rs4 = dbmanager.check_to(sugangVO.getCode());
+                    int j = 0;
+                    while(rs4.next()) {
+                        ++j;
+                    }
 
-//                    System.out.println("학번: ");
-//                    sugangVO.setStudent_id(sc.nextInt());
-//                    System.out.println("강좌 번호: ");
-//                    sugangVO.setCode(sc.next());
-//
-//                    dbmanager.apply_class(sugangVO);
+                    rs5 = dbmanager.select_class_to(sugangVO.getCode());
+                    while(rs5.next()) {
+                        classVO.setClass_to(rs5.getInt("class_to"));
+                    }
+
+                    if (j < classVO.getClass_to()) {
+                        System.out.print("학번: ");
+                        sugangVO.setStudent_id(sc.nextInt());
+                        dbmanager.select_id(sugangVO, gradeVO);
+                        dbmanager.insert_sugang(sugangVO, gradeVO);
+                        System.out.println("SUCCESS!!!");
+                    }
+                    else
+                        System.out.println("수강 정원이 다 찼습니다!");
+                    break;
                 case 8:
+                    System.out.print("학번 : ");
+                    sugangVO.setStudent_id(sc.nextInt());
+                    System.out.print("수강 정정할 강좌 번호: ");
+                    sugangVO.setCode(sc.nextInt());
+                    dbmanager.delete_sugang(sugangVO);
+                    System.out.println("SUCCESS!!!");
                     break;
                 case 9:
                     System.out.print("학번: ");
@@ -194,6 +223,7 @@ public class Main {
 
                         System.out.println("이름: " + studentsVO.getName() + ", 강좌 번호: " + gradeVO.getCode() + ", 강좌명: " + classVO.getName() + ", 교수명: " + professorsVO.getName() + ", 성적: " + gradeVO.getGrade());
                     }
+                    System.out.println("SUCCESS!!!");
                     break;
                 default:
                     break;

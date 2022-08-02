@@ -24,7 +24,7 @@ public class UpdateQuery {
             PreparedStatement ps = dbConn.prepareStatement(sql);
             ps.setString(1, professorsVO.getState());
             ps.setInt(2, professorsVO.getId());
-            int result = ps.executeUpdate();
+            ps.executeUpdate();
             ps.close();
         }
         catch (SQLException e) {
@@ -38,7 +38,7 @@ public class UpdateQuery {
             ps.setFloat(1, gradeVO.getGrade());
             ps.setInt(2, gradeVO.getStudent_id());
             ps.setInt(3, gradeVO.getCode());
-            int result = ps.executeUpdate();
+            ps.executeUpdate();
             ps.close();
         }
         catch (SQLException e) {

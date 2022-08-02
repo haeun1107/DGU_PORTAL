@@ -2,6 +2,7 @@ package mdrims;
 
 public class SugangVO {
     private int id;
+    private int max_id;
     private int code;
     private int professor_id;
     private int student_id;
@@ -13,6 +14,12 @@ public class SugangVO {
     }
     public void setId(int id){
         this.id = id;
+    }
+    public int getMax_id() {
+        return this.max_id;
+    }
+    public void setMax_id(int max_id){
+        this.max_id = max_id;
     }
     public int getCode(){
         return this.code;
@@ -49,7 +56,8 @@ public class SugangVO {
     public String toString() {
         return "SugangVO{" +
                 "id=" + id +
-                ", code='" + code + '\'' +
+                ", max_id=" + max_id +
+                ", code=" + code +
                 ", professor_id=" + professor_id +
                 ", student_id=" + student_id +
                 ", state='" + state + '\'' +

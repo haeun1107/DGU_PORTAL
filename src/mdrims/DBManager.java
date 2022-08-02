@@ -5,6 +5,7 @@ public class DBManager {
     InsertQuery insert_query = new InsertQuery();
     UpdateQuery update_query = new UpdateQuery();
     SelectQuery select_query = new SelectQuery();
+    DeleteQuery delete_query = new DeleteQuery();
     public static Connection dbConn;
 
     public void insert_student(StudentsVO studentsVO) {
@@ -22,9 +23,15 @@ public class DBManager {
         insert_query.insert_class(dbConn, classVO);
         DBConnector.close();
     }
-    public void insert_grade(GradeVO gradeVO) {
+//    public void insert_grade(GradeVO gradeVO) {
+//        dbConn = DBConnector.getConnection();
+//        insert_query.insert_grade(dbConn, gradeVO);
+//        DBConnector.close();
+//    }
+
+    public void insert_sugang(SugangVO sugangVO, GradeVO gradeVO) throws SQLException {
         dbConn = DBConnector.getConnection();
-        insert_query.insert_grade(dbConn, gradeVO);
+        insert_query.insert_sugang(dbConn, sugangVO, gradeVO);
         DBConnector.close();
     }
     public void update_student_state(StudentsVO studentsVO) {
@@ -43,6 +50,10 @@ public class DBManager {
         dbConn = DBConnector.getConnection();
         return select_query.select_class(dbConn);
     }
+    public ResultSet check_to(int code) throws SQLException {
+        dbConn = DBConnector.getConnection();
+        return select_query.check_to(dbConn, code);
+    }
     public ResultSet select_professor(int professor_id) throws SQLException {
         dbConn = DBConnector.getConnection();
         return select_query.select_professor(dbConn, professor_id);
@@ -58,5 +69,20 @@ public class DBManager {
     public ResultSet select_name(int code) throws SQLException {
         dbConn = DBConnector.getConnection();
         return select_query.select_name(dbConn, code);
+    }
+    public ResultSet select_class_to(int code) throws SQLException {
+        dbConn = DBConnector.getConnection();
+        return select_query.select_class_to(dbConn, code);
+    }
+    public void select_id(SugangVO sugangVO, GradeVO gradeVO) throws SQLException {
+        dbConn = DBConnector.getConnection();
+        select_query.select_id(dbConn, sugangVO, gradeVO);
+        DBConnector.close();
+    }
+
+    public void delete_sugang(SugangVO sugangVO) throws SQLException {
+        dbConn = DBConnector.getConnection();
+        delete_query.delete_sugang(dbConn, sugangVO);
+        DBConnector.close();
     }
 }

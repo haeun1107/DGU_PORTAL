@@ -2,6 +2,7 @@ package mdrims;
 
 public class GradeVO {
     private int id;
+    private int max_id;
     private int code;
     private int professor_id;
     private int student_id;
@@ -11,10 +12,11 @@ public class GradeVO {
     public int getId() {
         return id;
     }
-
     public void setId(int id) {
         this.id = id;
     }
+    public int getMax_id() { return max_id; }
+    public void setMax_id(int max_id) { this.max_id = max_id; }
     public int getCode() {
         return this.code;
     }
@@ -59,7 +61,8 @@ public class GradeVO {
     public String toString() {
         return "GradeVO{" +
                 "id=" + id +
-                ", code='" + code + '\'' +
+                ", max_id=" + max_id +
+                ", code=" + code +
                 ", professor_id=" + professor_id +
                 ", student_id=" + student_id +
                 ", grade=" + grade +
